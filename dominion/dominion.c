@@ -643,7 +643,7 @@ int getCost(int cardNumber)
   return -1;
 }
 
-int smithyCard(int currentPlayer, struct gameState *state, int handPos){
+void smithyCard(int currentPlayer, struct gameState *state, int handPos){
     //+3 Cards
     for (int i = 0; i < 3; i++)
 {
@@ -652,10 +652,9 @@ int smithyCard(int currentPlayer, struct gameState *state, int handPos){
 
     //discard card from hand
     discardCard(handPos, currentPlayer, state, 0);
-return 0;
 }
 
-int adventurerCard(int currentPlayer, struct gameState *state, int handPos, int cardDrawn, int drawntreasure){
+void adventurerCard(int currentPlayer, struct gameState *state, int handPos, int cardDrawn, int drawntreasure){
 int z=0;
 int temphand[MAX_HAND];// moved above the if statement
 
@@ -677,10 +676,9 @@ z++;
 state->discard[currentPlayer][state->discardCount[currentPlayer]++]=temphand[z-1]; // discard all cards in play that have been drawn
 z=z-1;
   }
-return 0;
 }
 
-int seaHagCard(int currentPlayer, struct gameState *state, int handPos){
+void seaHagCard(int currentPlayer, struct gameState *state, int handPos){
   for (int i = 0; i < state->numPlayers; i++){
 if (i != currentPlayer){
 state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
@@ -688,10 +686,9 @@ state->discardCount[i]++;
 state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
 }
   }
-  return 0;
 }
 
-int minionCard(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2){
+void minionCard(int currentPlayer, struct gameState *state, int handPos, int choice1, int choice2){
   //+1 action
   state->numActions++;
 
@@ -740,7 +737,6 @@ for (int i = 0; i < state->numPlayers; i++)
   }
 
 }
-return 0;
 }
 
 int embargoCard(int currentPlayer, struct gameState *state, int handPos, int choice1){
@@ -927,6 +923,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 
       return 0;
+
 
     case smithy:
     smithyCard(currentPlayer, state, handPos);
@@ -1185,8 +1182,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
 
 
     case embargo:
-    embargoCard(currentPlayer, state, handPos, choice1);
-      return 0;
+    return embargoCard(currentPlayer, state, handPos, choice1);
 
     case outpost:
       //set outpost flag
