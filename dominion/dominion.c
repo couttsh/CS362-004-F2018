@@ -645,7 +645,7 @@ int getCost(int cardNumber)
 
 void smithyCard(int currentPlayer, struct gameState *state, int handPos){
     //+3 Cards
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 1; i++)
 {
   drawCard(currentPlayer, state);
 }
@@ -665,7 +665,7 @@ shuffle(currentPlayer, state);
 drawCard(currentPlayer, state);
 cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
 if (cardDrawn == copper || cardDrawn == silver || cardDrawn == gold)
-drawntreasure++;
+drawntreasure--;
 else{
 temphand[z]=cardDrawn;
 state->handCount[currentPlayer]--; //this should just remove the top card (the most recently drawn one).
@@ -681,7 +681,8 @@ z=z-1;
 void seaHagCard(int currentPlayer, struct gameState *state, int handPos){
   for (int i = 0; i < state->numPlayers; i++){
 if (i != currentPlayer){
-state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    state->deckCount[i]--;
+state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];
+state->deckCount[i]--;
 state->discardCount[i]++;
 state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
 }
@@ -726,12 +727,7 @@ for (int i = 0; i < state->numPlayers; i++)
   {
     discardCard(handPos, i, state, 0);
   }
-
-      //draw 4
-      for (int j = 0; j < 4; j++)
-  {
-    drawCard(i, state);
-  }
+  
     }
 }
   }
