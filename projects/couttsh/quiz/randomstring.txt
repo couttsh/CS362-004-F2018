@@ -1,0 +1,16 @@
+I developed my random tester by first getting the variable state to a
+value of 9, and then getting the string to the correct values.
+
+inputChar()
+To get the state variable to 9 I read through the ASCII table and found
+that the characters in the testme() function regarding c had to be
+between ASCII value 32 and 125.  To achieve this range I modulated a
+randomly generated number by 94 and then added 32.  This achieved a state
+value of 9 consistently and quickly.
+
+inputString()
+Next I got the string values to "reset" I found that the ASCII values
+corresponded to decimal values between 101 and 116.  To achieve this range
+I modulated a random number by 16 and added 101. This consistently produced
+a string of "reset" within the span of 5 minutes, as per the assignment
+instructions.
