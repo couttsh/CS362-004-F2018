@@ -8,10 +8,10 @@
 #include <time.h>
 
 
-//testing sea hag
+//testing village
 int main() {
     
-    struct gameState G;
+    struct gameState g;
     int seed = 1000;
     int numPlayers = 2;
     int curPlayer = 0;
@@ -20,14 +20,14 @@ int main() {
     int deckSize;
     int handSize;
     int handPos;
-    int deckBefore;
-    int deckAfter;
-    int handBefore;
-    int handAfter;
-    int discardBefore;
-    int discardAfter;
-    int actionsBefore;
-    int actionsAfter;
+    int deckPre;
+    int deckPost;
+    int handPre;
+    int handPost;
+    int discardPre;
+    int discardPost;
+    int actionsPre;
+    int actionsPost;
     int i;
     int deckFailure = 0;
     int handFailure = 0;
@@ -41,67 +41,67 @@ int main() {
     //randomize hand size
     //    for(i = 0; i < 1000000; i++){
     for(i = 0; i < 1000000; i++){
-        initializeGame(numPlayers, k, seed, &G);
+        initializeGame(numPlayers, k, seed, &g);
         deckSize = rand() % (MAX_DECK + 1);
         //set handsize
         handSize = rand() % (deckSize + 1);
         
         
-        G.deckCount[0] = deckSize - handSize;
-        G.handCount[0] = handSize;
+        g.deckCount[0] = deckSize - handSize;
+        g.handCount[0] = handSize;
         
-        handPos = G.hand[curPlayer][G.handCount[curPlayer] - 1];
+        handPos = g.hand[curPlayer][g.handCount[curPlayer] - 1];
         //personal checks
-        deckBefore = G.deckCount[0];
-                printf("deck before %d\n", deckBefore);
-        handBefore = G.handCount[0];
-                printf("Hand before %d\n",handBefore);
-        discardBefore = G.playedCardCount;
-                printf("Discard before %d\n", discardBefore);
-        actionsBefore = G.numActions;
-                printf("Actions before %d\n", actionsBefore);
+        deckPre = g.deckCount[0];
+//                printf("deck before %d\n", deckPre);
+        handPre = g.handCount[0];
+//                printf("Hand before %d\n",handPre);
+        discardPre = g.playedCardCount;
+//                printf("Discard before %d\n", discardPre);
+        actionsPre = g.numActions;
+//                printf("Actions before %d\n", actionsPre);
         
         
-        villageCard(curPlayer, &G, handPos);
+        villageCard(curPlayer, &g, handPos);
         
-        deckAfter = G.deckCount[0];
-                printf("deck after %d\n", deckAfter);
-        handAfter = G.handCount[0];
-                printf("hand After %d\n", handAfter);
-        discardAfter = G.playedCardCount;
-                printf("Discard After %d\n\n", discardAfter);
-        actionsAfter = G.numActions;
-            printf("Actions before %d\n", actionsAfter);
+        deckPost = g.deckCount[0];
+//                printf("deck after %d\n", deckPost);
+        handPost = g.handCount[0];
+//                printf("hand After %d\n", handPost);
+        discardPost = g.playedCardCount;
+//                printf("Discard After %d\n\n", discardPost);
+        actionsPost = g.numActions;
+//            printf("Actions before %d\n", actionsPost);
         
         passed = 1;
         
-        if(handAfter != (handBefore + 1)){
+        if(handPost != (handPre + 1)){
             printf("Incorrect amount of cards drawn: Test Failed\n\n");
             handFailure++;
             passed = 0;
         }
         
-        if(deckAfter != (deckBefore - 1)){
+        if(deckPost != (deckPre - 1)){
             printf("Incorrect number of cards removed from deck: Test Failed\n\n");
             deckFailure++;
             passed = 0;
         }
         
         
-        if(actionsBefore == actionsAfter){
+        if(actionsPre == actionsPost){
             printf("Incorrect number of actions taken: Test Failed\n\n");
             actionFailure++;
             passed = 0;
         }
         
-        if(actionsAfter != (actionsBefore + 2)){
+        if(actionsPost != (actionsPre + 2)){
             printf("Incorrect number of actions taken: Test Failed\n\n");
             actionFailure++;
             passed = 0;
         }
         
-        if(discardAfter != (discardBefore + 1)){
-            printf("Smithy Not Discarded after use: Test Failed\n\n");
+        if(discardPost != (discardPre + 1)){
+            printf("Card Not Discarded after use: Test Failed\n\n");
             discardFailure++;
             passed = 0;
         }
@@ -116,7 +116,7 @@ int main() {
     printf("\n\n");
     printf("# of Tests Passed: %d\n", testPassed);
     printf("# of Cards Drawn To Hand Failed: %d\n", handFailure);
-    printf("# of Village Discarded Fails: %d\n\n", discardFailure);
+    printf("# of Discard Fails: %d\n\n", discardFailure);
     
     clock_t toc = clock();
     
