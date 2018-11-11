@@ -53,6 +53,8 @@ randomtestcard2.out:  randomtestcard2
 	gcov -b dominion.c >> randomtestcard2.out
 	cat dominion.c.gcov >> randomtestcard2.out
 
+randomtestresults: randomtestadventurer.out randomtestcard1.out randomtestcard2.out
+
 player: player.c interface.o
 	gcc -o player player.c -g  dominion.o rngs.o interface.o $(CFLAGS)
 
