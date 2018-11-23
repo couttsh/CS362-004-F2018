@@ -1,0 +1,50 @@
+        -:    0:Source:unittest2.c
+        -:    0:Graph:unittest2.gcno
+        -:    0:Data:unittest2.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://TESTING function: buycard
+        -:    2:
+        -:    3:#include "dominion.h"
+        -:    4:#include "dominion_helpers.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <string.h>
+        -:    7://#include <stdio.h>
+        -:    8://#include <math.h>
+        -:    9://#include <stdlib.h>
+        -:   10://#include <assert.h>
+        -:   11:
+        1:   12:int main(){
+        1:   13:    printf("\n UNIT TEST #2: buyCard\n");
+        -:   14:    struct gameState g;
+        1:   15:    struct gameState * y = &g;
+        1:   16:    int test = 0;
+        -:   17:    
+        1:   18:    g.coins = 2;
+        1:   19:    g.numBuys = 2;
+        1:   20:    printf("Do we have enough coins in our hand to buy a card?\n");
+        1:   21:    test = buyCard(2, y);
+        1:   22:    if(test != -1)
+    #####:   23:        printf("Test failed!\n");
+        -:   24:    else
+        1:   25:        printf("Test passed!\n");
+        -:   26:    
+        1:   27:    printf("Can we buy the card we want?\n");
+        1:   28:    g.coins = 12;
+        1:   29:    test = buyCard(2, y);
+        1:   30:    if (test == 0)
+    #####:   31:        printf("Test passed!\n");
+        -:   32:    else
+        1:   33:        printf("Test failed!\n");
+        -:   34:    
+        1:   35:    printf("Do we have any existing buys?\n");
+        1:   36:    g.coins = 6;
+        1:   37:    test = buyCard(2, y);
+        1:   38:    if(test == -1)
+        1:   39:        printf("Test passed! \n");
+        -:   40:    else
+    #####:   41:        printf("Test failed! \n");
+        -:   42:    
+        1:   43:    return 0;
+        -:   44:    
+        -:   45:}

@@ -1,0 +1,35 @@
+
+ UNIT TEST #1: Whose Turn? 
+PASSED 
+PASSED 
+PASSED 
+File 'unittest1.c'
+Lines executed:100.00% of 10
+Creating 'unittest1.c.gcov'
+
+
+ UNIT TEST #2: buyCard
+Do we have enough coins in our hand to buy a card?
+Test passed!
+Can we buy the card we want?
+Test failed!
+Do we have any existing buys?
+Test passed! 
+File 'unittest2.c'
+Lines executed:87.50% of 24
+Creating 'unittest2.c.gcov'
+
+
+ UNIT TEST #3
+Test passed! 
+File 'unittest3.c'
+Lines executed:100.00% of 9
+Creating 'unittest3.c.gcov'
+
+
+ UNIT TEST #4
+Test passed!
+File 'unittest4.c'
+Lines executed:100.00% of 9
+Creating 'unittest4.c.gcov'
+

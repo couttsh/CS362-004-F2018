@@ -1,0 +1,30 @@
+        -:    0:Source:unittest4.c
+        -:    0:Graph:unittest4.gcno
+        -:    0:Data:unittest4.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1://TESTING FUNCTION:  numHandCards
+        -:    2:
+        -:    3:#include "dominion.h"
+        -:    4:#include "dominion_helpers.h"
+        -:    5:#include "rngs.h"
+        -:    6:#include <string.h>
+        -:    7:#include <stdio.h>
+        -:    8:#include <math.h>
+        -:    9:#include <stdlib.h>
+        -:   10:#include <assert.h>
+        -:   11:
+        1:   12:int main(){
+        1:   13:    printf("\n UNIT TEST #4\n");
+        -:   14:    struct gameState g;
+        1:   15:    struct gameState * y = &g;
+        1:   16:    int k[10] = {smithy,adventurer,sea_hag,embargo,tribute,minion,ambassador, steward,embargo,baron};
+        1:   17:    initializeGame(2, k, 5, &g);
+        1:   18:    assert((y->handCount[whoseTurn(y)]) == 0);
+        -:   19:    //printf("checkpoint 1");
+        1:   20:    assert(numHandCards(y) == 0);
+        -:   21:    
+        1:   22:    printf("Test passed!\n");
+        -:   23:    
+        1:   24:    return 0;
+        -:   25:}
